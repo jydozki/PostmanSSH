@@ -76,6 +76,10 @@
 							"pm.expect(book.type).to.eql(\"non-fiction\");\r",
 							"})\r",
 							"\r",
+							"pm.test(\"Verify if in stock\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[0].available).to.eql(false);\r",
+							"});\r",
 							"\r",
 							"\r",
 							"\r",
@@ -88,7 +92,13 @@
 			],
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "PManKey",
+						"value": "{{postman_api_key}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{baseURL}}/books?type=non-fiction",
 					"host": [
@@ -201,7 +211,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"clientName\": \"{{$randomFirstName}}, {{$randomLastName}}\",\r\n\"clientEmail\": \"xxx@example.com\"\r\n}",
+					"raw": "{\r\n    \"clientName\": \"{{$randomFirstName}}, {{$randomLastName}}\",\r\n    \"clientEmail\": \"omoGod@example.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -340,9 +350,10 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"const response = pm.response.json();\r",
-							"\r",
-							"console.log(response [0])\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData[1].bookId).to.eql(4);\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -489,6 +500,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "67556c8755a6fb5b38da5d91d4ed444768de7e32e32489d0dbf9c09658026a0e",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -519,8 +540,8 @@
 			"value": "93b93ca4304262d3d0cadedd8b807f38e6a7ad3f5f3cd46dd1b0fe443a4dc59c"
 		},
 		{
-			"key": "accessToken2",
-			"value": "5e7b6c2252a3e65ad38dd032b6d7fa6153332e16ab858bcd5060e4afc8a3c7fb"
+			"key": "acessToken",
+			"value": "67556c8755a6fb5b38da5d91d4ed444768de7e32e32489d0dbf9c09658026a0e"
 		}
 	]
 }
